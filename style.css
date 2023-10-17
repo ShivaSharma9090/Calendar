@@ -1,0 +1,604 @@
+/* Define CSS custom properties */
+:root {
+  --primary-clr: #297cc4; /* Define a custom primary color variable */
+}
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Customize the scrollbar */
+/* Nice scrollbar styles */
+::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5; /* Style the scrollbar track */
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-clr); /* Style the scrollbar thumb using the custom color variable */
+  border-radius: 50px;
+}
+
+/* Style for the body of the page */
+body {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  background-color: #e2e1dc;
+}
+
+/* Container for the calendar */
+.container {
+  position: relative;
+  width: 1200px;
+  min-height: 850px;
+  margin: 0 auto;
+  padding: 5px;
+  color: #fff;
+  display: flex;
+  border-radius: 10px;
+  background-color: #373c4f;
+}
+
+/* Left side of the container */
+.left {
+  width: 60%;
+  padding: 20px;
+}
+
+/* Calendar section */
+.calendar {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: #878895;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Styles for the before and after elements of the calendar */
+.calendar::before,
+.calendar::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 12px;
+  height: 97%;
+  border-radius: 0 5px 5px 0;
+  background-color: #d3d4d6d7;
+  transform: translateY(-50%);
+}
+
+/* Calendar before element styles */
+.calendar::before {
+  height: 94%;
+  left: calc(100% + 12px);
+  background-color: rgb(153, 153, 153);
+}
+
+/* Styles for the month section of the calendar */
+.calendar .month {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Styles for the previous and next month buttons */
+.calendar .month .prev,
+.calendar .month .next {
+  cursor: pointer;
+}
+
+/* Styles for the month buttons on hover */
+.calendar .month .prev:hover,
+.calendar .month .next:hover {
+  color: var(--primary-clr);
+}
+
+/* Styles for the weekdays section */
+.calendar .weekdays {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Styles for individual weekdays */
+.weekdays div {
+  width: 14.28%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Styles for the days section */
+.calendar .days {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Styles for individual days */
+.calendar .days .day {
+  width: 14.28%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-clr);
+  border: 1px solid #f5f5f5;
+}
+
+/* Borders for specific day positions */
+.calendar .days .day:nth-child(7n + 1) {
+  border-left: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(7n) {
+  border-right: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(-n + 7) {
+  border-top: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(n + 29) {
+  border-bottom: 2px solid #f5f5f5;
+}
+
+/* Styles for active and hovered days */
+.calendar .days .day:not(.prev-date, .next-date):hover {
+  color: #fff;
+  background-color: var(--primary-clr);
+}
+
+/* Styles for previous and next month dates */
+.calendar .days .prev-date,
+.calendar .days .next-date {
+  color: #b3b3b3;
+}
+
+/* Styles for the active day */
+.calendar .days .active {
+  position: relative;
+  font-size: 2rem;
+  color: #fff;
+  background-color: var(--primary-clr);
+}
+
+/* Styles for the active day's shadow */
+.calendar .days .active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px 2px var(--primary-clr);
+}
+
+/* Styles for today's date */
+.calendar .days .today {
+  font-size: 2rem;
+}
+
+/* Styles for events within a day */
+.calendar .days .event {
+  position: relative;
+}
+
+/* Styles for the line under an event */
+.calendar .days .event::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  width: 75%;
+  height: 6px;
+  border-radius: 30px;
+  transform: translateX(-50%);
+  background-color: var(--primary-clr);
+}
+
+/* Styles for the line under an event when hovered */
+.calendar .days .day:hover.event::after {
+  background-color: #fff;
+}
+
+/* Styles for the line under an active event */
+.calendar .days .active.event::after {
+  background-color: #fff;
+  bottom: 20%;
+  padding-bottom: 10px;
+}
+
+/* Styles for the "Go to Today" section */
+.calendar .goto-today {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  color: var(--primary-clr);
+}
+
+/* Styles for the "Go to Today" button */
+.calendar .goto-today .goto {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--primary-clr);
+}
+
+/* Styles for the "Go to Today" input */
+.calendar .goto-today .goto input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 20px;
+  color: var(--primary-clr);
+}
+
+/* Styles for the "Go to Today" button on hover */
+.calendar .goto-today button:hover {
+  color: #fff;
+  background-color: var(--primary-clr);
+}
+
+/* Styles for the right side of the container */
+.container .right {
+  position: relative;
+  width: 40%;
+  min-height: 100%;
+  padding: 20px 0;
+}
+
+/* Styles for the "Today's Date" section */
+.right .today-date {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  padding-left: 70px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+/* Styles for the day and date in "Today's Date" */
+.right .today-date .event-day {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+right .today-date .event-date {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #878895;
+}
+
+/* Styles for the events section */
+.events {
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding-left: 4px;
+}
+
+/* Styles for individual events */
+.events .event {
+  position: relative;
+  width: 95%;
+  min-height: 70px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 20px;
+  padding-left: 50px;
+  color: #fff;
+  background: linear-gradient(90deg, #3f4458, transparent);
+  cursor: pointer;
+}
+
+/* Styles for even-numbered events */
+.events .event:nth-child(even) {
+  background: transparent;
+}
+
+/* Styles for hovered events */
+.events .event:hover {
+  background: linear-gradient(90deg, var(--primary-clr), transparent);
+}
+
+/* Styles for the event title */
+.events .event .title {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Styles for the event title text */
+.events .event .title .event-title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 20px;
+}
+
+/* Styles for event icons */
+.events .event i {
+  color: var(--primary-clr);
+  font-size: 0.5rem;
+}
+
+/* Styles for event icons on hover */
+.events .event:hover i {
+  color: #fff;
+}
+
+/* Add a checkmark symbol to the end of events */
+.events .event::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 3rem;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+  color: var(--primary-clr);
+  transform: translateY(-50%);
+}
+
+/* Show checkmark symbol on hovered events */
+.events .event:hover::after {
+  display: flex;
+}
+
+/* Style the "Add Event" button */
+.add-event {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #878895;
+  border: 2px solid #878895;
+  opacity: 0.5;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* Style the "Add Event" button on hover */
+.add-event:hover {
+  opacity: 1;
+}
+
+/* Style for the "Add Event" icon */
+.add-event i {
+  pointer-events: none;
+}
+
+/* Styles for the "No Event" message */
+.events .no-event {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #878895;
+}
+
+/* Styles for the "Add Event" input wrapper */
+.add-event-wrapper {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  width: 90%;
+  max-height: 0;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #fff;
+  transform: translateX(-50%);
+  transition: max-height 0.5s ease;
+}
+
+/* Show the "Add Event" input wrapper when active */
+.add-event-wrapper.active {
+  max-height: 300px;
+}
+
+/* Styles for the header of the "Add Event" section */
+.add-event-header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: #373c4f;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/* Styles for the "Close" button in the "Add Event" section */
+.add-event-header .close {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Styles for the "Close" button on hover */
+.add-event-header .close:hover {
+  color: var(--primary-clr);
+}
+
+/* Styles for the title in the "Add Event" section */
+.add-event-header .title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Styles for the body of the "Add Event" section */
+.add-event-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+}
+
+/* Styles for the input in the "Add Event" section */
+.add-event-body .add-event-input {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Styles for the text input in the "Add Event" section */
+.add-event-body .add-event-input input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #f5f5f5;
+  padding: 0 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #373c4f;
+}
+
+/* Styles for the placeholder text in the input */
+.add-event-body .add-event-input input::placeholder {
+  color: #a5a5a5;
+}
+
+/* Styles for the focused input in the "Add Event" section */
+.add-event-body .add-event-input input:focus {
+  border-bottom: 1px solid var(--primary-clr);
+}
+
+/* Styles for the focused input's placeholder text */
+.add-event-body .add-event-input input:focus::placeholder {
+  color: var(--primary-clr);
+}
+
+/* Styles for the footer of the "Add Event" section */
+.add-event-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Styles for the "Add Event" button in the footer */
+.add-event-footer .add-event-btn {
+  height: 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: var(--primary-clr);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid var(--primary-clr);
+}
+
+/* Styles for the "Add Event" button on hover */
+.add-event-footer .add-event-btn:hover {
+  background-color: transparent;
+  color: var(--primary-clr);
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 1000px) {
+  /* Adjust styles for smaller screens */
+}
+
+@media screen and (max-width: 500px) {
+  /* Further adjustments for very small screens */
+}
+
+/* Credits section */
+.credits {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #2e69df;
+}
+
+.credits a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.credits a:hover {
+  text-decoration: underline;
+}
